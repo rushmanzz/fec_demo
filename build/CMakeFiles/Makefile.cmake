@@ -116,6 +116,8 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/client_1.dir/DependInfo.cmake"
-  "CMakeFiles/server_1.dir/DependInfo.cmake"
+  "CMakeFiles/tcp_client_1.dir/DependInfo.cmake"
+  "CMakeFiles/tcp_server_1.dir/DependInfo.cmake"
+  "CMakeFiles/udp_client_1.dir/DependInfo.cmake"
+  "CMakeFiles/udp_server_1.dir/DependInfo.cmake"
   )

@@ -48,24 +48,13 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /root/fec/fec_demo
+CMAKE_SOURCE_DIR = /root/fec_demo
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /root/fec/fec_demo/build
+CMAKE_BINARY_DIR = /root/fec_demo/build
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-
-.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -78,11 +67,22 @@ edit_cache/fast: edit_cache
 
 .PHONY : edit_cache/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/usr/bin/cmake -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+
+.PHONY : rebuild_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/fec/fec_demo/build/CMakeFiles /root/fec/fec_demo/build/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/fec_demo/build/CMakeFiles /root/fec_demo/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /root/fec/fec_demo/build/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /root/fec_demo/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,30 +111,56 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named client_1
+# Target rules for targets named tcp_client_1
 
 # Build rule for target.
-client_1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 client_1
-.PHONY : client_1
+tcp_client_1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tcp_client_1
+.PHONY : tcp_client_1
 
 # fast build rule for target.
-client_1/fast:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/build
-.PHONY : client_1/fast
+tcp_client_1/fast:
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/build
+.PHONY : tcp_client_1/fast
 
 #=============================================================================
-# Target rules for targets named server_1
+# Target rules for targets named tcp_server_1
 
 # Build rule for target.
-server_1: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 server_1
-.PHONY : server_1
+tcp_server_1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 tcp_server_1
+.PHONY : tcp_server_1
 
 # fast build rule for target.
-server_1/fast:
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/build
-.PHONY : server_1/fast
+tcp_server_1/fast:
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/build
+.PHONY : tcp_server_1/fast
+
+#=============================================================================
+# Target rules for targets named udp_client_1
+
+# Build rule for target.
+udp_client_1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 udp_client_1
+.PHONY : udp_client_1
+
+# fast build rule for target.
+udp_client_1/fast:
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/build
+.PHONY : udp_client_1/fast
+
+#=============================================================================
+# Target rules for targets named udp_server_1
+
+# Build rule for target.
+udp_server_1: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 udp_server_1
+.PHONY : udp_server_1
+
+# fast build rule for target.
+udp_server_1/fast:
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/build
+.PHONY : udp_server_1/fast
 
 fec/fec.o: fec/fec.cpp.o
 
@@ -142,8 +168,10 @@ fec/fec.o: fec/fec.cpp.o
 
 # target to build an object file
 fec/fec.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/fec.cpp.o
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/fec.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/fec.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/fec.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/fec.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/fec.cpp.o
 .PHONY : fec/fec.cpp.o
 
 fec/fec.i: fec/fec.cpp.i
@@ -152,8 +180,10 @@ fec/fec.i: fec/fec.cpp.i
 
 # target to preprocess a source file
 fec/fec.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/fec.cpp.i
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/fec.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/fec.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/fec.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/fec.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/fec.cpp.i
 .PHONY : fec/fec.cpp.i
 
 fec/fec.s: fec/fec.cpp.s
@@ -162,8 +192,10 @@ fec/fec.s: fec/fec.cpp.s
 
 # target to generate assembly for a file
 fec/fec.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/fec.cpp.s
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/fec.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/fec.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/fec.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/fec.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/fec.cpp.s
 .PHONY : fec/fec.cpp.s
 
 fec/galois.o: fec/galois.cpp.o
@@ -172,8 +204,10 @@ fec/galois.o: fec/galois.cpp.o
 
 # target to build an object file
 fec/galois.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/galois.cpp.o
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/galois.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/galois.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/galois.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/galois.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/galois.cpp.o
 .PHONY : fec/galois.cpp.o
 
 fec/galois.i: fec/galois.cpp.i
@@ -182,8 +216,10 @@ fec/galois.i: fec/galois.cpp.i
 
 # target to preprocess a source file
 fec/galois.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/galois.cpp.i
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/galois.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/galois.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/galois.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/galois.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/galois.cpp.i
 .PHONY : fec/galois.cpp.i
 
 fec/galois.s: fec/galois.cpp.s
@@ -192,8 +228,10 @@ fec/galois.s: fec/galois.cpp.s
 
 # target to generate assembly for a file
 fec/galois.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/galois.cpp.s
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/galois.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/galois.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/galois.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/galois.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/galois.cpp.s
 .PHONY : fec/galois.cpp.s
 
 fec/galois_noasm.o: fec/galois_noasm.cpp.o
@@ -202,8 +240,10 @@ fec/galois_noasm.o: fec/galois_noasm.cpp.o
 
 # target to build an object file
 fec/galois_noasm.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/galois_noasm.cpp.o
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/galois_noasm.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/galois_noasm.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/galois_noasm.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/galois_noasm.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/galois_noasm.cpp.o
 .PHONY : fec/galois_noasm.cpp.o
 
 fec/galois_noasm.i: fec/galois_noasm.cpp.i
@@ -212,8 +252,10 @@ fec/galois_noasm.i: fec/galois_noasm.cpp.i
 
 # target to preprocess a source file
 fec/galois_noasm.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/galois_noasm.cpp.i
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/galois_noasm.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/galois_noasm.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/galois_noasm.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/galois_noasm.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/galois_noasm.cpp.i
 .PHONY : fec/galois_noasm.cpp.i
 
 fec/galois_noasm.s: fec/galois_noasm.cpp.s
@@ -222,8 +264,10 @@ fec/galois_noasm.s: fec/galois_noasm.cpp.s
 
 # target to generate assembly for a file
 fec/galois_noasm.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/galois_noasm.cpp.s
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/galois_noasm.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/galois_noasm.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/galois_noasm.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/galois_noasm.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/galois_noasm.cpp.s
 .PHONY : fec/galois_noasm.cpp.s
 
 fec/galois_table.o: fec/galois_table.cpp.o
@@ -232,8 +276,10 @@ fec/galois_table.o: fec/galois_table.cpp.o
 
 # target to build an object file
 fec/galois_table.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/galois_table.cpp.o
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/galois_table.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/galois_table.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/galois_table.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/galois_table.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/galois_table.cpp.o
 .PHONY : fec/galois_table.cpp.o
 
 fec/galois_table.i: fec/galois_table.cpp.i
@@ -242,8 +288,10 @@ fec/galois_table.i: fec/galois_table.cpp.i
 
 # target to preprocess a source file
 fec/galois_table.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/galois_table.cpp.i
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/galois_table.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/galois_table.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/galois_table.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/galois_table.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/galois_table.cpp.i
 .PHONY : fec/galois_table.cpp.i
 
 fec/galois_table.s: fec/galois_table.cpp.s
@@ -252,8 +300,10 @@ fec/galois_table.s: fec/galois_table.cpp.s
 
 # target to generate assembly for a file
 fec/galois_table.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/galois_table.cpp.s
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/galois_table.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/galois_table.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/galois_table.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/galois_table.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/galois_table.cpp.s
 .PHONY : fec/galois_table.cpp.s
 
 fec/inversion_tree.o: fec/inversion_tree.cpp.o
@@ -262,8 +312,10 @@ fec/inversion_tree.o: fec/inversion_tree.cpp.o
 
 # target to build an object file
 fec/inversion_tree.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/inversion_tree.cpp.o
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/inversion_tree.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/inversion_tree.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/inversion_tree.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/inversion_tree.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/inversion_tree.cpp.o
 .PHONY : fec/inversion_tree.cpp.o
 
 fec/inversion_tree.i: fec/inversion_tree.cpp.i
@@ -272,8 +324,10 @@ fec/inversion_tree.i: fec/inversion_tree.cpp.i
 
 # target to preprocess a source file
 fec/inversion_tree.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/inversion_tree.cpp.i
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/inversion_tree.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/inversion_tree.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/inversion_tree.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/inversion_tree.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/inversion_tree.cpp.i
 .PHONY : fec/inversion_tree.cpp.i
 
 fec/inversion_tree.s: fec/inversion_tree.cpp.s
@@ -282,8 +336,10 @@ fec/inversion_tree.s: fec/inversion_tree.cpp.s
 
 # target to generate assembly for a file
 fec/inversion_tree.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/inversion_tree.cpp.s
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/inversion_tree.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/inversion_tree.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/inversion_tree.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/inversion_tree.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/inversion_tree.cpp.s
 .PHONY : fec/inversion_tree.cpp.s
 
 fec/matrix.o: fec/matrix.cpp.o
@@ -292,8 +348,10 @@ fec/matrix.o: fec/matrix.cpp.o
 
 # target to build an object file
 fec/matrix.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/matrix.cpp.o
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/matrix.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/matrix.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/matrix.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/matrix.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/matrix.cpp.o
 .PHONY : fec/matrix.cpp.o
 
 fec/matrix.i: fec/matrix.cpp.i
@@ -302,8 +360,10 @@ fec/matrix.i: fec/matrix.cpp.i
 
 # target to preprocess a source file
 fec/matrix.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/matrix.cpp.i
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/matrix.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/matrix.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/matrix.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/matrix.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/matrix.cpp.i
 .PHONY : fec/matrix.cpp.i
 
 fec/matrix.s: fec/matrix.cpp.s
@@ -312,8 +372,10 @@ fec/matrix.s: fec/matrix.cpp.s
 
 # target to generate assembly for a file
 fec/matrix.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/matrix.cpp.s
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/matrix.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/matrix.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/matrix.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/matrix.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/matrix.cpp.s
 .PHONY : fec/matrix.cpp.s
 
 fec/reedsolomon.o: fec/reedsolomon.cpp.o
@@ -322,8 +384,10 @@ fec/reedsolomon.o: fec/reedsolomon.cpp.o
 
 # target to build an object file
 fec/reedsolomon.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/reedsolomon.cpp.o
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/reedsolomon.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/reedsolomon.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/reedsolomon.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/reedsolomon.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/reedsolomon.cpp.o
 .PHONY : fec/reedsolomon.cpp.o
 
 fec/reedsolomon.i: fec/reedsolomon.cpp.i
@@ -332,8 +396,10 @@ fec/reedsolomon.i: fec/reedsolomon.cpp.i
 
 # target to preprocess a source file
 fec/reedsolomon.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/reedsolomon.cpp.i
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/reedsolomon.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/reedsolomon.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/reedsolomon.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/reedsolomon.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/reedsolomon.cpp.i
 .PHONY : fec/reedsolomon.cpp.i
 
 fec/reedsolomon.s: fec/reedsolomon.cpp.s
@@ -342,9 +408,83 @@ fec/reedsolomon.s: fec/reedsolomon.cpp.s
 
 # target to generate assembly for a file
 fec/reedsolomon.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/fec/reedsolomon.cpp.s
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/fec/reedsolomon.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/fec/reedsolomon.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/fec/reedsolomon.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/fec/reedsolomon.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/fec/reedsolomon.cpp.s
 .PHONY : fec/reedsolomon.cpp.s
+
+include/tcp_client.o: include/tcp_client.cpp.o
+
+.PHONY : include/tcp_client.o
+
+# target to build an object file
+include/tcp_client.cpp.o:
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/tcp_client.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/tcp_client.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/tcp_client.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/tcp_client.cpp.o
+.PHONY : include/tcp_client.cpp.o
+
+include/tcp_client.i: include/tcp_client.cpp.i
+
+.PHONY : include/tcp_client.i
+
+# target to preprocess a source file
+include/tcp_client.cpp.i:
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/tcp_client.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/tcp_client.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/tcp_client.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/tcp_client.cpp.i
+.PHONY : include/tcp_client.cpp.i
+
+include/tcp_client.s: include/tcp_client.cpp.s
+
+.PHONY : include/tcp_client.s
+
+# target to generate assembly for a file
+include/tcp_client.cpp.s:
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/tcp_client.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/tcp_client.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/tcp_client.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/tcp_client.cpp.s
+.PHONY : include/tcp_client.cpp.s
+
+include/tcp_server.o: include/tcp_server.cpp.o
+
+.PHONY : include/tcp_server.o
+
+# target to build an object file
+include/tcp_server.cpp.o:
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/tcp_server.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/tcp_server.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/tcp_server.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/tcp_server.cpp.o
+.PHONY : include/tcp_server.cpp.o
+
+include/tcp_server.i: include/tcp_server.cpp.i
+
+.PHONY : include/tcp_server.i
+
+# target to preprocess a source file
+include/tcp_server.cpp.i:
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/tcp_server.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/tcp_server.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/tcp_server.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/tcp_server.cpp.i
+.PHONY : include/tcp_server.cpp.i
+
+include/tcp_server.s: include/tcp_server.cpp.s
+
+.PHONY : include/tcp_server.s
+
+# target to generate assembly for a file
+include/tcp_server.cpp.s:
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/tcp_server.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/tcp_server.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/tcp_server.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/tcp_server.cpp.s
+.PHONY : include/tcp_server.cpp.s
 
 include/udp_client.o: include/udp_client.cpp.o
 
@@ -352,8 +492,10 @@ include/udp_client.o: include/udp_client.cpp.o
 
 # target to build an object file
 include/udp_client.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/include/udp_client.cpp.o
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/include/udp_client.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/udp_client.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/udp_client.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/udp_client.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/udp_client.cpp.o
 .PHONY : include/udp_client.cpp.o
 
 include/udp_client.i: include/udp_client.cpp.i
@@ -362,8 +504,10 @@ include/udp_client.i: include/udp_client.cpp.i
 
 # target to preprocess a source file
 include/udp_client.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/include/udp_client.cpp.i
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/include/udp_client.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/udp_client.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/udp_client.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/udp_client.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/udp_client.cpp.i
 .PHONY : include/udp_client.cpp.i
 
 include/udp_client.s: include/udp_client.cpp.s
@@ -372,8 +516,10 @@ include/udp_client.s: include/udp_client.cpp.s
 
 # target to generate assembly for a file
 include/udp_client.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/include/udp_client.cpp.s
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/include/udp_client.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/udp_client.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/udp_client.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/udp_client.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/udp_client.cpp.s
 .PHONY : include/udp_client.cpp.s
 
 include/udp_server.o: include/udp_server.cpp.o
@@ -382,8 +528,10 @@ include/udp_server.o: include/udp_server.cpp.o
 
 # target to build an object file
 include/udp_server.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/include/udp_server.cpp.o
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/include/udp_server.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/udp_server.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/udp_server.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/udp_server.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/udp_server.cpp.o
 .PHONY : include/udp_server.cpp.o
 
 include/udp_server.i: include/udp_server.cpp.i
@@ -392,8 +540,10 @@ include/udp_server.i: include/udp_server.cpp.i
 
 # target to preprocess a source file
 include/udp_server.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/include/udp_server.cpp.i
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/include/udp_server.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/udp_server.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/udp_server.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/udp_server.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/udp_server.cpp.i
 .PHONY : include/udp_server.cpp.i
 
 include/udp_server.s: include/udp_server.cpp.s
@@ -402,8 +552,10 @@ include/udp_server.s: include/udp_server.cpp.s
 
 # target to generate assembly for a file
 include/udp_server.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/include/udp_server.cpp.s
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/include/udp_server.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/include/udp_server.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/include/udp_server.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/include/udp_server.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/include/udp_server.cpp.s
 .PHONY : include/udp_server.cpp.s
 
 test/client_1_1.o: test/client_1_1.cpp.o
@@ -412,7 +564,7 @@ test/client_1_1.o: test/client_1_1.cpp.o
 
 # target to build an object file
 test/client_1_1.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/test/client_1_1.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/test/client_1_1.cpp.o
 .PHONY : test/client_1_1.cpp.o
 
 test/client_1_1.i: test/client_1_1.cpp.i
@@ -421,7 +573,7 @@ test/client_1_1.i: test/client_1_1.cpp.i
 
 # target to preprocess a source file
 test/client_1_1.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/test/client_1_1.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/test/client_1_1.cpp.i
 .PHONY : test/client_1_1.cpp.i
 
 test/client_1_1.s: test/client_1_1.cpp.s
@@ -430,7 +582,7 @@ test/client_1_1.s: test/client_1_1.cpp.s
 
 # target to generate assembly for a file
 test/client_1_1.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/test/client_1_1.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/test/client_1_1.cpp.s
 .PHONY : test/client_1_1.cpp.s
 
 test/server_1_1.o: test/server_1_1.cpp.o
@@ -439,7 +591,7 @@ test/server_1_1.o: test/server_1_1.cpp.o
 
 # target to build an object file
 test/server_1_1.cpp.o:
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/test/server_1_1.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/test/server_1_1.cpp.o
 .PHONY : test/server_1_1.cpp.o
 
 test/server_1_1.i: test/server_1_1.cpp.i
@@ -448,7 +600,7 @@ test/server_1_1.i: test/server_1_1.cpp.i
 
 # target to preprocess a source file
 test/server_1_1.cpp.i:
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/test/server_1_1.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/test/server_1_1.cpp.i
 .PHONY : test/server_1_1.cpp.i
 
 test/server_1_1.s: test/server_1_1.cpp.s
@@ -457,8 +609,62 @@ test/server_1_1.s: test/server_1_1.cpp.s
 
 # target to generate assembly for a file
 test/server_1_1.cpp.s:
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/test/server_1_1.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/test/server_1_1.cpp.s
 .PHONY : test/server_1_1.cpp.s
+
+test/tcp_client_1.o: test/tcp_client_1.cpp.o
+
+.PHONY : test/tcp_client_1.o
+
+# target to build an object file
+test/tcp_client_1.cpp.o:
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/test/tcp_client_1.cpp.o
+.PHONY : test/tcp_client_1.cpp.o
+
+test/tcp_client_1.i: test/tcp_client_1.cpp.i
+
+.PHONY : test/tcp_client_1.i
+
+# target to preprocess a source file
+test/tcp_client_1.cpp.i:
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/test/tcp_client_1.cpp.i
+.PHONY : test/tcp_client_1.cpp.i
+
+test/tcp_client_1.s: test/tcp_client_1.cpp.s
+
+.PHONY : test/tcp_client_1.s
+
+# target to generate assembly for a file
+test/tcp_client_1.cpp.s:
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/test/tcp_client_1.cpp.s
+.PHONY : test/tcp_client_1.cpp.s
+
+test/tcp_server_1.o: test/tcp_server_1.cpp.o
+
+.PHONY : test/tcp_server_1.o
+
+# target to build an object file
+test/tcp_server_1.cpp.o:
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/test/tcp_server_1.cpp.o
+.PHONY : test/tcp_server_1.cpp.o
+
+test/tcp_server_1.i: test/tcp_server_1.cpp.i
+
+.PHONY : test/tcp_server_1.i
+
+# target to preprocess a source file
+test/tcp_server_1.cpp.i:
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/test/tcp_server_1.cpp.i
+.PHONY : test/tcp_server_1.cpp.i
+
+test/tcp_server_1.s: test/tcp_server_1.cpp.s
+
+.PHONY : test/tcp_server_1.s
+
+# target to generate assembly for a file
+test/tcp_server_1.cpp.s:
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/test/tcp_server_1.cpp.s
+.PHONY : test/tcp_server_1.cpp.s
 
 util/config.o: util/config.cpp.o
 
@@ -466,8 +672,10 @@ util/config.o: util/config.cpp.o
 
 # target to build an object file
 util/config.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/util/config.cpp.o
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/util/config.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/util/config.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/util/config.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/util/config.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/util/config.cpp.o
 .PHONY : util/config.cpp.o
 
 util/config.i: util/config.cpp.i
@@ -476,8 +684,10 @@ util/config.i: util/config.cpp.i
 
 # target to preprocess a source file
 util/config.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/util/config.cpp.i
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/util/config.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/util/config.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/util/config.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/util/config.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/util/config.cpp.i
 .PHONY : util/config.cpp.i
 
 util/config.s: util/config.cpp.s
@@ -486,8 +696,10 @@ util/config.s: util/config.cpp.s
 
 # target to generate assembly for a file
 util/config.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/util/config.cpp.s
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/util/config.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/util/config.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/util/config.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/util/config.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/util/config.cpp.s
 .PHONY : util/config.cpp.s
 
 util/util.o: util/util.cpp.o
@@ -496,8 +708,10 @@ util/util.o: util/util.cpp.o
 
 # target to build an object file
 util/util.cpp.o:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/util/util.cpp.o
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/util/util.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/util/util.cpp.o
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/util/util.cpp.o
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/util/util.cpp.o
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/util/util.cpp.o
 .PHONY : util/util.cpp.o
 
 util/util.i: util/util.cpp.i
@@ -506,8 +720,10 @@ util/util.i: util/util.cpp.i
 
 # target to preprocess a source file
 util/util.cpp.i:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/util/util.cpp.i
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/util/util.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/util/util.cpp.i
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/util/util.cpp.i
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/util/util.cpp.i
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/util/util.cpp.i
 .PHONY : util/util.cpp.i
 
 util/util.s: util/util.cpp.s
@@ -516,8 +732,10 @@ util/util.s: util/util.cpp.s
 
 # target to generate assembly for a file
 util/util.cpp.s:
-	$(MAKE) -f CMakeFiles/client_1.dir/build.make CMakeFiles/client_1.dir/util/util.cpp.s
-	$(MAKE) -f CMakeFiles/server_1.dir/build.make CMakeFiles/server_1.dir/util/util.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_client_1.dir/build.make CMakeFiles/tcp_client_1.dir/util/util.cpp.s
+	$(MAKE) -f CMakeFiles/tcp_server_1.dir/build.make CMakeFiles/tcp_server_1.dir/util/util.cpp.s
+	$(MAKE) -f CMakeFiles/udp_client_1.dir/build.make CMakeFiles/udp_client_1.dir/util/util.cpp.s
+	$(MAKE) -f CMakeFiles/udp_server_1.dir/build.make CMakeFiles/udp_server_1.dir/util/util.cpp.s
 .PHONY : util/util.cpp.s
 
 # Help Target
@@ -526,10 +744,12 @@ help:
 	@echo "... all (the default if no target is provided)"
 	@echo "... clean"
 	@echo "... depend"
-	@echo "... rebuild_cache"
 	@echo "... edit_cache"
-	@echo "... client_1"
-	@echo "... server_1"
+	@echo "... tcp_client_1"
+	@echo "... rebuild_cache"
+	@echo "... tcp_server_1"
+	@echo "... udp_client_1"
+	@echo "... udp_server_1"
 	@echo "... fec/fec.o"
 	@echo "... fec/fec.i"
 	@echo "... fec/fec.s"
@@ -551,6 +771,12 @@ help:
 	@echo "... fec/reedsolomon.o"
 	@echo "... fec/reedsolomon.i"
 	@echo "... fec/reedsolomon.s"
+	@echo "... include/tcp_client.o"
+	@echo "... include/tcp_client.i"
+	@echo "... include/tcp_client.s"
+	@echo "... include/tcp_server.o"
+	@echo "... include/tcp_server.i"
+	@echo "... include/tcp_server.s"
 	@echo "... include/udp_client.o"
 	@echo "... include/udp_client.i"
 	@echo "... include/udp_client.s"
@@ -563,6 +789,12 @@ help:
 	@echo "... test/server_1_1.o"
 	@echo "... test/server_1_1.i"
 	@echo "... test/server_1_1.s"
+	@echo "... test/tcp_client_1.o"
+	@echo "... test/tcp_client_1.i"
+	@echo "... test/tcp_client_1.s"
+	@echo "... test/tcp_server_1.o"
+	@echo "... test/tcp_server_1.i"
+	@echo "... test/tcp_server_1.s"
 	@echo "... util/config.o"
 	@echo "... util/config.i"
 	@echo "... util/config.s"
