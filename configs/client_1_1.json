@@ -1,9 +1,9 @@
 {
     "ip": "121.41.106.143",
     "port": 4600,
-    "data_shards": 5,
-    "parity_shards": 3,
+    "data_shards": 100,
+    "parity_shards": 40,
     "duration": 1,
-    "count": 3,
-    "data": "this is a test!  test! this is a test! this is a test! this is a test! this is a test! this is a test! this is a test! this is a test! this is a test this is a test! this is a test this is a test! this is a test this is a test! this is a test!this is a test! this is a test this is a test! this is a test this is a test! this is a test this is a test! this is a test!this is a test! this is a test this is a test! this is a test this is a test! this is a test this is a test! this is a test!this is a test!  test! this is a test! this is a test! this is a test! this is a test! this is a test! this is a test! this is a test! this is a test this is a test! this is a test this is a test! this is a test this is a test! this is a test!this is a test! this is a test this is a test! this is a test this is a test! this is a test this is a test! this is a test!this is a test! this is a test this is a test! this is a test this is a test! this is a test this is a test! this is a test! his is a test this is a test!"
+    "count": 1000,
+    "data": "this is a test data!"
 }

@@ -1,7 +1,0 @@
-{
-    "ip": "0.0.0.0",
-    "port": 4601,
-    "data_shards": 5,
-    "parity_shards": 2,
-    "duration": 1
-}
