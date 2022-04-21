@@ -1,0 +1,4 @@
+/root/fec/fec_demo/build/CMakeFiles/rebuild_cache.dir
+/root/fec/fec_demo/build/CMakeFiles/edit_cache.dir
+/root/fec/fec_demo/build/CMakeFiles/client_1.dir
+/root/fec/fec_demo/build/CMakeFiles/server_1.dir

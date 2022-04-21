@@ -16,6 +16,9 @@
 
 bool Kill = false;
 
+uint32_t UDPServer::start_ts = 0;
+uint32_t UDPServer::end_ts = 0;
+
 void signal_handler(int signum)
 {
     std::cout << "Interrupt signal (" << signum << ") received." << std::endl;
