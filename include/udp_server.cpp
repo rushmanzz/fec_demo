@@ -19,6 +19,7 @@ bool Kill = false;
 void signal_handler(int signum)
 {
     std::cout << "Interrupt signal (" << signum << ") received." << std::endl;
+    std::cout << "Time to receive the package: " << UDPServer::end_ts - UDPServer::start_ts << "ms" << std::endl;
     Kill = true;
     exit(signum);
 }
@@ -111,6 +112,10 @@ void UDPServer::run() {
                 continue;
             } else {
                 std::pair<byte*, size_t> msg_map = std::make_pair<byte*, size_t>(buf, len);
+                if(UDPServer::start_ts == 0){
+                    start_ts = currentMs();
+                }
+                UDPServer::end_ts = currentMs();
                 decode_fec(msg_map);
             }
         }

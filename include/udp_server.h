@@ -11,6 +11,7 @@
 #include <mutex>
 #include <thread>
 #include <fec.h>
+#include <../util/util.h>
 
 class UDPServer {
 public:
@@ -54,6 +55,9 @@ private:
     int u_recover_count;
     //threads
     std::thread u_msg_thread;
+    //calculate time
+    static uint32_t start_ts{0};
+    static uint32_t end_ts{0};
 };
 
 
