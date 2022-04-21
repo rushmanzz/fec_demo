@@ -1,0 +1,7 @@
+{
+    "ip": "121.41.106.143",
+    "port": 4600,
+    "data_shards": 100,
+    "parity_shards": 40,
+    "duration": 0
+}
