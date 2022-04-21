@@ -1,6 +1,0 @@
-/root/fec_demo/build/CMakeFiles/edit_cache.dir
-/root/fec_demo/build/CMakeFiles/tcp_client_1.dir
-/root/fec_demo/build/CMakeFiles/rebuild_cache.dir
-/root/fec_demo/build/CMakeFiles/tcp_server_1.dir
-/root/fec_demo/build/CMakeFiles/udp_client_1.dir
-/root/fec_demo/build/CMakeFiles/udp_server_1.dir
