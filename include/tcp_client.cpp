@@ -58,5 +58,5 @@ void TCPClient::send(std::string &data){
         return ;
     }
     send_count++;
-    std::cout << "tcp send count :" << send_count << std::endl;
+    //std::cout << "tcp send count :" << send_count << std::endl;
 }

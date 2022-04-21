@@ -4,6 +4,6 @@
     "data_shards": 100,
     "parity_shards": 40,
     "duration": 1,
-    "count": 1000,
+    "count": 10000,
     "data": "this is a tcp test data!"
 }

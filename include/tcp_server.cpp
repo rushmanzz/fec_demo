@@ -61,41 +61,41 @@ void TCPServer::bind(){
     }
     int ret = ::bind(_fd, (struct sockaddr*)&addr, sizeof(addr));
     assert(ret != -1);
-
 }
 
 void TCPServer::run(){
     ::signal(SIGINT,tcp_signal_handler);
     bind();
-    int ret = ::listen(_fd,5);
+    int ret = ::listen(_fd,128);
     assert(ret != -1);
-    int sock_fd = accept(_fd,nullptr,nullptr);
-    assert(sock_fd != -1);
-    std::cout << "accept a client!" << std::endl;
-
+    
     unsigned char buf[len_t];
-
     int len = 0;
 
     while(true){
-        ::bzero(&buf,len_t);
-
-        len = recv(sock_fd, buf, len_t, _duration_ms);
-
-        if(len == 0){
-            continue;
+        int sock_fd = accept(_fd,nullptr,nullptr);
+        assert(sock_fd != -1);
+        std::cout << "accept a client!" << std::endl;
+        
+        while(true){
+            ::bzero(&buf,len_t);
+            len = recv(sock_fd, buf, len_t, _duration_ms);
+            if(len == 0){
+                break;
+            }
+            if(len < 0){
+                std::cout << "read error code, maybe connection close " << len <<std::endl;
+                break;
+            }
+            if(TCPServer::start_ts == 0){
+                start_ts = currentMs();
+            }
+            TCPServer::end_ts = currentMs();
+            recv_count++;
+            std::cout << "tcp recv count: " << recv_count << "    buf: " << buf << std::endl;
         }
-
-        if(len < 0){
-            std::cout << "read error code" << len <<std::endl;
-            continue;
-        }
-        if(TCPServer::start_ts == 0){
-            start_ts = currentMs();
-        }
-        TCPServer::end_ts = currentMs();
-        recv_count++;
-        std::cout << "tcp recv count: " << recv_count << "    buf: " << buf << std::endl;
+        std::cout << "close a client!" << std::endl;
+        ::close(sock_fd);
     }
 
 }
