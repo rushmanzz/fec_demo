@@ -207,16 +207,17 @@ void UDPServer::msg_process() {
 
 void UDPServer::decode_fec(std::pair<byte*, size_t> &msg_map) {
     auto pkt= u_fec.Decode(msg_map.first, static_cast<size_t>(msg_map.second));
+    std::cout << "packet type:" << (pkt.flag == ( uint16_t)0xf2 ? "fec" : "data")  << "    packet seq: " << pkt.seqid ;
     if (pkt.flag == typeData)
     {
         std::string str((char*)pkt.data->data()+2, pkt.data->size()-2);
         u_recv_count++;
-        //std::cout << "recv: " << str << " recv_count: " << u_recv_count << std::endl;
+        std::cout << "    recv: " << str ;
     }
     std::string str((char*)pkt.data->data()+2, pkt.data->size()-2);
     //std::cout << "recv: " << str << " recv_count: " << u_recv_count << std::endl;
     //std::cout << "pkt.seqid: " << pkt.seqid << " pkt.flag: " << pkt.flag << std::endl;
-    std::cout << "packet type:" << (pkt.flag == ( uint16_t)0xf2 ? "fec" : "data") << "  recv_count:" << u_recv_count << "  recover_count:" << u_recover_count << std::endl;
+    
     if (pkt.flag == typeData || pkt.flag == typeFEC)
     {
         auto recovered = u_fec.Input(pkt);
@@ -235,9 +236,10 @@ void UDPServer::decode_fec(std::pair<byte*, size_t> &msg_map) {
                         u_recv_count++;
                         u_recover_count++;
                     }
-                    //std::cout << "recover: " << str << " recv_count: " << u_recv_count << " recover_count: " << u_recover_count << std::endl;
+                    std::cout << "    recover: " << str ;
                 }
             }
         }
     }
+    std::cout << "  recv_count:" << u_recv_count << "  recover_count:" << u_recover_count << std::endl;
 }
